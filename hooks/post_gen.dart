@@ -14,6 +14,27 @@ Future<void> run(HookContext context) async {
   );
   progress.complete();
 
+  progress = context.logger.progress('Create assets folder...');
+  await Process.run(
+    'mkdir',
+    [
+      'assets',
+      'assets/audios',
+      'assets/fonts',
+      'assets/icons',
+      'assets/images',
+      'assets/images/1.5x',
+      'assets/images/2.0x',
+      'assets/images/3.0x',
+      'assets/images/4.0x',
+      'assets/lotties',
+      'assets/videos',
+    ],
+    runInShell: true,
+    workingDirectory: workingDirectory,
+  );
+  progress.complete();
+
   progress = context.logger.progress('Executing... pubspec update');
   await Process.run(
     'fvm',
