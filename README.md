@@ -1,6 +1,6 @@
 # Clean Fox
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/felangel/mason) 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/license/mit/) 
 
 Clean Fox is a flutter template using Mason Bricks with a clean code architecture that allows users to choose between 3 state management GetX, Bloc, and Riverpod. The local database has been installed using the Isar database.
 
