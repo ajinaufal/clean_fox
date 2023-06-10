@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:{{project_name}}/core/state/app_state.dart';
+import 'package:{{project_name}}/feature/feature.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class ListProductView extends StatefulWidget {
+  const ListProductView({super.key});
+
+  @override
+  State<ListProductView> createState() => _ListProductViewState();
+}
+
+class _ListProductViewState extends State<ListProductView> {
+  late ListProductBloc _listProductBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _listProductBloc = BlocProvider.of(context);
+    _listProductBloc.add(ListProductStarted());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      body: BlocBuilder<ListProductBloc, AppStates>(
+        builder: (context, state) {
+          return state.when(
+            initial: () => Container(),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            empty: () => Container(),
+            success: (data) {
+              final products = data.products ?? [];
+              return ListView.separated(
+                 itemBuilder: (context, index) => ProductTileWidget(
+                   product: products[index],
+                 ),
+                separatorBuilder: (context, index) => Container(),
+                itemCount: products.length,
+              );
+            },
+            error: (failuer) => Text(failuer.message),
+          );
+        }
+      )
+    );
+  }
+}
+

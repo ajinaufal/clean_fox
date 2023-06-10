@@ -1,0 +1,48 @@
+import 'package:{{project_name}}/feature/feature.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class ListProductView extends StatefulWidget {
+  const ListProductView({super.key});
+
+  @override
+  State<ListProductView> createState() => _ListProductViewState();
+}
+
+class _ListProductViewState extends State<ListProductView> {
+  late ListProductNotifier notifier;
+  @override
+  
+  void initState() {
+    super.initState();
+    notifier = Get.find<ListProductNotifier>(tag: 'ListProductNotifier');
+    notifier.getListProduct();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Obx(() {
+        final state = notifier.state.value;
+        return state.when(
+          initial: () => Container(),
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          empty: () => Container(),
+          success: (data) {
+            final products = data.products ?? [];
+            return ListView.separated(
+              itemBuilder: (context, index) => ProductTileWidget(
+                product: products[index],
+              ),
+              separatorBuilder: (context, index) => Container(),
+              itemCount: products.length,
+            );
+          },
+          error: (failuer) => Text(failuer.message),
+        );
+      }),
+    );
+  }
+}

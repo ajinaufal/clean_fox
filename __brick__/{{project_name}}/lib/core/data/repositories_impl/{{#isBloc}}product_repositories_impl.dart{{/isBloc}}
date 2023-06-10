@@ -1,0 +1,33 @@
+import 'dart:io';
+
+import 'package:{{project_name}}/core/data/datasources/remote/product_remote_data_source.dart';
+import 'package:{{project_name}}/core/data/models/failures/failure.dart';
+import 'package:{{project_name}}/core/domain/entities/list_product_entity.dart';
+import 'package:{{project_name}}/core/domain/repositories/product_repositories.dart';
+import 'package:{{project_name}}/core/helpers/network_helper.dart';
+import 'package:dartz/dartz.dart';
+
+class ProductRepositoriesImpl implements ProductRepositories {
+  ProductRepositoriesImpl({
+    required this.networkInfo,
+    required this.remoteDataSource,
+  });
+
+  final NetworkInfo networkInfo;
+  final ProductRemoteDataSource remoteDataSource;
+
+  @override
+  Future<Either<Failure, ListProductEntity>> getProduct() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final resp = await remoteDataSource.getProduct();
+        return Right(resp);
+      } on SocketException {
+        return const Left(SocketFailure());
+      } catch (_) {
+        return const Left(ServerFailure());
+      }
+    }
+    return const Left(NetworkFailure());
+  }
+}

@@ -1,0 +1,24 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:{{project_name}}/core/config/router/observer_router.dart';
+import 'package:{{project_name}}/feature/feature.dart';
+
+final routerProvider = Provider.autoDispose(
+  (ref) => GoRouter(
+    debugLogDiagnostics: true,
+    initialLocation: '/',
+    observers: [RouterObserver()],
+    routes: routes,
+    // redirect: notifier.redirect,
+  ),
+);
+
+List<GoRoute> get routes {
+  return [
+    GoRoute(
+      name: 'home',
+      path: '/',
+      builder: (context, state) => const ListProductView(),
+    ),
+  ];
+}

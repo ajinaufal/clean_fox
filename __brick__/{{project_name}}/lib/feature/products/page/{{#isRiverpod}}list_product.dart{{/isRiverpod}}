@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:{{project_name}}/feature/feature.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class ListProductView extends ConsumerStatefulWidget {
+  const ListProductView({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _ListProductViewState();
+}
+
+class _ListProductViewState extends ConsumerState<ListProductView> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(listProductNotifierProvider.notifier).getListProduct();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(listProductNotifierProvider);
+    return state.when(
+      initial: () => Container(),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      empty: () => Container(),
+      success: (data) {
+          final products = data.products ?? [];
+          return ListView.separated(
+            itemBuilder: (context, index) => ProductTileWidget(
+              product: products[index],
+            ),
+          separatorBuilder: (context, index) => Container(),
+          itemCount: products.length,
+        );
+      },
+      error: (failuer) => Text(failuer.message),
+    );
+  }
+}

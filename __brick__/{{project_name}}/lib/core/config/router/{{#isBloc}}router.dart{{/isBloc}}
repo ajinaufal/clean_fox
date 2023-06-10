@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:{{project_name}}/feature/feature.dart';
+import 'package:{{project_name}}/core/config/router/observer_router.dart';
+import 'package:{{project_name}}/injector/main_injector.dart';
+
+final _key = GlobalKey<NavigatorState>(debugLabel: 'routerKey');
+
+final router = GoRouter(
+  navigatorKey: _key,
+  debugLogDiagnostics: true,
+  initialLocation: '/',
+  observers: [RouterObserver()],
+  routes: routes,
+);
+
+List<GoRoute> get routes {
+  return [
+    GoRoute(
+      name: 'home',
+      path: '/',
+      builder: (context, state) => BlocProvider(
+        create: (context) => di<ListProductBloc>(),
+        child: const ListProductView(),
+      ),
+    ),
+  ];
+}
