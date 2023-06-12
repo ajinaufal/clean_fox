@@ -59,7 +59,7 @@ Example
 │   ├── feature
 │   │   ├── feature.dart
 │   │   └── example
-│   │       ├── bloc
+│   │       ├── bloc / notifier / getx
 │   │       ├── page
 │   │       └── widget
 │   ├── generated
@@ -68,10 +68,11 @@ Example
 │   │   │   └── messages_en.dart
 │   │   └── l10n.dart
 │   ├── injector
-│   │   ├── bloc_injector.dart
+│   │   ├── bloc_injector.dart / getx_injector.dart
 │   │   ├── data_source_injector.dart
 │   │   ├── main_injector.dart
 │   │   ├── repositories_injector.dart
+│   │   ├── database_injector.dart
 │   │   └── service_injector.dart
 │   ├── l10n
 │   │   └── intl_en.arb

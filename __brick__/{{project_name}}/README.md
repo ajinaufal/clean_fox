@@ -1,16 +1,25 @@
-# {{ project_name }}
+# {{app_name}} | Flutter Clean Architecture with {{state}}
 
-A new Flutter project.
+A new Flutter project by [Clean Fox](https://github.com/ajinaufal/clean_fox).
 
-## Getting Started
+## Clean Code
+![Arcitecture](https://media.licdn.com/dms/image/D4D22AQHfnse9d0VCbQ/feedshare-shrink_2048_1536/0/1682565661218?e=1689206400&v=beta&t=Yf7OHd4IIY-CmBKMRHqc6IJASVWaJLOMA0CeVG06W7o)
 
-This project is a starting point for a Flutter application.
+![Arcitecture](https://miro.medium.com/v2/resize:fit:556/0*zUtZYiJ1bDTugOYY)
 
-A few resources to get you started if this is your first Flutter project:
+## Assets
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The `assets` directory houses images, fonts, and any other files you want to
+include with your application.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The `assets/images` directory contains [resolution-aware
+images](https://flutter.dev/docs/development/ui/assets-and-images#resolution-aware).
+
+## L10n
+
+This project generates localized messages based on arb files found in
+the `lib/src/l10n` directory.
+
+To support additional languages, please visit the tutorial on
+[Internationalizing Flutter
+apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
