@@ -1,6 +1,6 @@
 # {{app_name}} | Flutter Clean Architecture with {{state}}
 
-A new Flutter project by [Clean Fox](https://github.com/ajinaufal/clean_fox).
+A new Flutter project by [Clean Fox](https://github.com/ajinaufal/clean_fox) ![logo](https://i.ibb.co/6rytr7D/icon.png).
 
 ## Clean Code
 ![Arcitecture](https://media.licdn.com/dms/image/D4D22AQHfnse9d0VCbQ/feedshare-shrink_2048_1536/0/1682565661218?e=1689206400&v=beta&t=Yf7OHd4IIY-CmBKMRHqc6IJASVWaJLOMA0CeVG06W7o)
